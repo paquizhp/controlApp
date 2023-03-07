@@ -1,0 +1,24 @@
+<div>
+	<table class="table table-striped table-bordered">
+		<thead>
+			<tr>
+				<th scope="col" *ngFor="let colunm of columns">
+					{{ colunm.text }}
+				</th>
+				<th scope="col" *ngIf="actions">Acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let fila of tableData">
+				<td *ngFor="let key of objectKeys(fila)">
+					{{ fila[key] }}
+				</td>
+				<td *ngIf="actions">
+					<div>
+						<button type="button" class="btn btn-outline-danger" (click)="onSelect(fila)">Eliminar</button>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
