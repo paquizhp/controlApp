@@ -1,24 +1,45 @@
-<div>
-	<table class="table table-striped table-bordered">
-		<thead>
-			<tr>
-				<th scope="col" *ngFor="let colunm of columns">
-					{{ colunm.text }}
-				</th>
-				<th scope="col" *ngIf="actions">Acciones</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr *ngFor="let fila of tableData">
-				<td *ngFor="let key of objectKeys(fila)">
-					{{ fila[key] }}
-				</td>
-				<td *ngIf="actions">
-					<div>
-						<button type="button" class="btn btn-outline-danger" (click)="onSelect(fila)">Eliminar</button>
-					</div>
-				</td>
-			</tr>
-		</tbody>
-	</table>
+<div class="col-12">
+  <table
+    class="table table-hover"
+    cdk-table
+    [dataSource]="tableData"
+    recycleRows
+  >
+    <ng-container
+      *ngFor="let column of columns; let i = index"
+      [cdkColumnDef]="column.field"
+    >
+      <th cdk-header-cell *cdkHeaderCellDef>
+        {{ column.value }}
+      </th>
+      <td cdk-cell *cdkCellDef="let row; let i = index">
+        {{ row[column.field] }}
+      </td>
+    </ng-container>
+    <!---
+    <ng-container [matColumnDef]="'actions'">
+      <th mat-header-cell *matHeaderCellDef>actions</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button (click)="edit(element)">
+          <mat-icon mat-icon-button color="primary">edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="delete(element['id'])">
+          <mat-icon mat-icon-button color="warn">delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+  -->
+    <header>
+      <tr cdk-header-row *cdkHeaderRowDef="displayedColumns"></tr>
+    </header>
+    <tbody>
+      <tr
+        cdk-row
+        *cdkRowDef="let row; columns: displayedColumns; let i = index"
+        [class.demo-row-is-clicked]="isSelected(row)"
+        (click)="onClick(row)"
+        (dblclick)="onDblClick(row)"
+      ></tr>
+    </tbody>
+  </table>
 </div>

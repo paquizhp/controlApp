@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { WorkerService } from '../../_services/worker.service';
+import { COLUMNS } from './models/worker.data';
 
 @Component({
   selector: 'app-workers',
@@ -13,15 +15,16 @@ export class WorkersComponent implements OnInit {
   errorMessage = '';
 
   showModal: boolean = false;
-  //selectedWorker;
+  selectedWorker: any;
   public data: any;
-  columns = [{ text: 'Nick' }, { text: 'Nombre' }, { text: 'Teléfono' }];
+  columns = COLUMNS;
 
   tableData: any[] = [];
-  constructor(private workerService: WorkerService) {}
+  constructor(private workerService: WorkerService, private router: Router) {}
 
   ngOnInit(): void {
     this.getAllWorkers();
+    console.log(this.form);
   }
   onSubmit(): void {
     this.workerService.addWorker(this.form).subscribe(
@@ -29,7 +32,8 @@ export class WorkersComponent implements OnInit {
         console.log(data.workers);
         this.isSuccessful = true;
         this.isRegisterFailed = false;
-        this.tableData.push(this.form);
+        this.tableData.push(this.form); //por lo pronto
+        this.form = {};
       },
       (err) => {
         this.errorMessage = err.error.message;
@@ -38,35 +42,21 @@ export class WorkersComponent implements OnInit {
     );
   }
   getAllWorkers() {
-    this.workerService.getWorkers().subscribe(
-      (data) => {
-        console.log(data);
-        this.tableData = data.workers.map((item: any) => {
-          return {
-            name: item.name,
-            nickName: item.nickName,
-            telephone: item.telephone,
-          };
-        });
+    this.workerService.getWorkers().subscribe({
+      next: (data: any) => {
+        this.tableData = data.workers;
       },
-      (err) => {
-        this.errorMessage = err.error.message;
-      }
-    );
+      error: (e) => console.error(e),
+    });
   }
-  selectedRow(event: any) {
-    //this.selectedWorker= event;
-    this.workerService.deleteWorker(event).subscribe(
-      ({ data }) => {
-        if (data.deletedCount) {
-          this.tableData = this.tableData.filter(
-            (item) => item.telephone !== event.telephone
-          );
-        }
-      },
-      (err) => {
-        this.errorMessage = err.error.message;
-      }
-    );
+  selectedRow(row: any) {
+    console.log('ss', row);
+    const params = { id: row._id, name: row.name, telephone: row.telephone };
+    this.router.navigate([
+      '/admin/workers/detail',
+      row._id,
+      row.name,
+      row.telephone,
+    ]);
   }
 }

@@ -1,0 +1,109 @@
+<nav
+  class="navbar navbar-expand-md navbar-dark bg-dark"
+  aria-label="Fourth navbar example"
+>
+  <div class="container-fluid">
+    <div class="text-end">
+      <button
+        *ngIf="!isLoggedIn"
+        type="button"
+        routerLink="login"
+        class="btn btn-outline-light me-2"
+      >
+        Login
+      </button>
+      <button *ngIf="isLoggedIn" type="button" class="btn btn-warning">
+        Sign-up
+      </button>
+    </div>
+    <a
+      *ngIf="isLoggedIn"
+      class="navbar-brand"
+      routerLinkActive="active"
+      routerLink="profile"
+    >
+      {{ username }}
+    </a>
+    <a
+      *ngIf="isLoggedIn"
+      class="navbar-brand"
+      routerLinkActive="active"
+      (click)="logout()"
+      >Sing-up</a
+    >
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarsExample04"
+      aria-controls="navbarsExample04"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExample04">
+      <ul class="navbar-nav me-auto mb-2 mb-md-0">
+        <li class="nav-item" *ngIf="showAdminBoard && isLoggedIn">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            routerLinkActive="active"
+            routerLink="home"
+            >Inicio
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="showAdminBoard && isLoggedIn">
+          <a
+            class="nav-link"
+            routerLinkActive="active"
+            routerLink="admin/workers"
+            >Trabajadores</a
+          >
+        </li>
+        <li class="nav-item" *ngIf="showAdminBoard && isLoggedIn">
+          <a class="nav-link" routerLinkActive="active" routerLink="admin/pay"
+            >Pagar</a
+          >
+        </li>
+        <li class="nav-item" *ngIf="showModeratorBoard">
+          <a class="nav-link" routerLinkActive="active" routerLink="mod"
+            >Moderador</a
+          >
+        </li>
+
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            *ngIf="isLoggedIn"
+            routerLinkActive="active"
+            routerLink="user"
+            >Usuario</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="register"
+            >Registro</a
+          >
+        </li>
+
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            >Dropdown</a
+          >
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,104 +1,146 @@
-<div class="col-md-12">
-  <div class="card">
-    <form
-      *ngIf="!isSuccessful"
-      name="form"
-      (ngSubmit)="f.form.valid && onSubmit()"
-      #f="ngForm"
-      novalidate
-    >
-      <div class="form-group">
-        <label for="name">Nombre</label>
-        <input
-          type="text"
-          class="form-control"
-          name="name"
-          [(ngModel)]="form.name"
-          required
-          minlength="3"
-          maxlength="20"
-          #username="ngModel"
-        />
-        <div class="alert-danger" *ngIf="f.submitted && username.invalid">
-          <div *ngIf="username.errors?.['required']">
-            El nombre es requerido
-          </div>
-          <div *ngIf="username.errors?.['minlength']">
-            Username must be at least 3 characters
-          </div>
-          <div *ngIf="username.errors?.['maxlength']">
-            Username must be at most 20 characters
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="nickName">NickName</label>
-        <input
-          type="text"
-          class="form-control"
-          name="nickName"
-          [(ngModel)]="form.nickName"
-          required
-          minlength="3"
-          maxlength="20"
-          #username="ngModel"
-        />
-        <div class="alert-danger" *ngIf="f.submitted && username.invalid">
-          <div *ngIf="username.errors?.['required']">
-            El NickName es requerido
-          </div>
-          <div *ngIf="username.errors?.['minlength']">
-            NickName must be at least 3 characters
-          </div>
-          <div *ngIf="username.errors?.['maxlength']">
-            NickName must be at most 20 characters
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="telephone">Telefono</label>
-        <input
-          type="number"
-          class="form-control"
-          name="telephone"
-          [(ngModel)]="form.telephone"
-          required
-          minlength="9"
-          maxlength="9"
-          #telephone="ngModel"
-        />
-        <div class="alert-danger" *ngIf="f.submitted && telephone.invalid">
-          <div *ngIf="telephone.errors?.['required']">
-            El teléfono es requerido
-          </div>
-          <div *ngIf="telephone.errors?.['minlength']">
-            The phone must be at 9 numbers
-          </div>
-          <div *ngIf="username.errors?.['maxlength']">
-            The phone must be at 9 numbers
-          </div>
-        </div>
-      </div>
-      <div class="form-group d-grid gap-2 d-md-flex justify-content-md-end">
-        <button class="btn btn-primary">Añadir</button>
-      </div>
+<div class="col-md-12 mt-5">
+  <!-- Button trigger modal -->
+  <button
+    type="button"
+    class="btn btn-primary buttonAdd"
+    data-bs-toggle="modal"
+    data-bs-target="#staticBackdrop"
+  >
+    <mat-icon>person_add</mat-icon>
+  </button>
 
-      <div class="alert alert-warning" *ngIf="f.submitted && isRegisterFailed">
-        Signup failed!<br />{{ errorMessage }}
-      </div>
-    </form>
-    <div class="alert alert-success" *ngIf="isSuccessful">
-      Your registration is successful!
-    </div>
-  </div>
-  <div>
-    <p class="h2">Lista de Trabajadores</p>
-  </div>
   <app-table
     [columns]="columns"
     [tableData]="tableData"
-    [actions]="true"
     (ouputData)="selectedRow($event)"
-  >
-  </app-table>
+  ></app-table>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">
+          Nuevo Trabajador
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <form
+            name="form"
+            (ngSubmit)="f.form.valid && onSubmit()"
+            #f="ngForm"
+            novalidate
+          >
+            <div class="form-group">
+              <label for="name">Nombre</label>
+              <input
+                type="text"
+                class="form-control"
+                name="name"
+                [(ngModel)]="form.name"
+                required
+                minlength="3"
+                maxlength="20"
+                #username="ngModel"
+              />
+              <div class="alert-danger" *ngIf="f.submitted && username.invalid">
+                <div *ngIf="username.errors?.['required']">
+                  El nombre es requerido
+                </div>
+                <div *ngIf="username.errors?.['minlength']">
+                  Username must be at least 3 characters
+                </div>
+                <div *ngIf="username.errors?.['maxlength']">
+                  Username must be at most 20 characters
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="nickName">NickName</label>
+              <input
+                type="text"
+                class="form-control"
+                name="nickName"
+                [(ngModel)]="form.nickName"
+                required
+                minlength="3"
+                maxlength="20"
+                #username="ngModel"
+              />
+              <div class="alert-danger" *ngIf="f.submitted && username.invalid">
+                <div *ngIf="username.errors?.['required']">
+                  El NickName es requerido
+                </div>
+                <div *ngIf="username.errors?.['minlength']">
+                  NickName must be at least 3 characters
+                </div>
+                <div *ngIf="username.errors?.['maxlength']">
+                  NickName must be at most 20 characters
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="telephone">Telefono</label>
+              <input
+                type="number"
+                class="form-control"
+                name="telephone"
+                [(ngModel)]="form.telephone"
+                required
+                minlength="9"
+                maxlength="9"
+                #telephone="ngModel"
+              />
+              <div
+                class="alert-danger"
+                *ngIf="f.submitted && telephone.invalid"
+              >
+                <div *ngIf="telephone.errors?.['required']">
+                  El teléfono es requerido
+                </div>
+                <div *ngIf="telephone.errors?.['minlength']">
+                  The phone must be at 9 numbers
+                </div>
+                <div *ngIf="username.errors?.['maxlength']">
+                  The phone must be at 9 numbers
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="alert alert-warning"
+              *ngIf="f.submitted && isRegisterFailed"
+            >
+              Signup failed!<br />{{ errorMessage }}
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary" data-bs-dismiss="modal">
+                Cancelar
+              </button>
+              <button type="su" class="btn btn-primary">Guardar</button>
+            </div>
+          </form>
+          <div class="alert alert-success" *ngIf="isSuccessful">
+            Your registration is successful!
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

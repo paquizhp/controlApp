@@ -1,21 +1,28 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { CdkTableModule } from '@angular/cdk/table';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BoardAdminComponent } from './components/board-admin/board-admin.component';
 import { BoardModeratorComponent } from './components/board-moderator/board-moderator.component';
 import { BoardUserComponent } from './components/board-user/board-user.component';
-import { DatePickerComponent } from './components/date-picker/date-picker.component';
 import { TableComponent } from './components/generic/table/table.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { PayComponent } from './components/pay/pay.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
+import { DetailComponent } from './components/workers/detail/detail.component';
 import { WorkersComponent } from './components/workers/workers.component';
+import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import { FooterComponent } from './components/generic/footer/footer.component';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
@@ -28,12 +35,23 @@ import { WorkersComponent } from './components/workers/workers.component';
     BoardAdminComponent,
     BoardModeratorComponent,
     BoardUserComponent,
-    DatePickerComponent,
     WorkersComponent,
     PayComponent,
+    DetailComponent,
+    FooterComponent,
+    ToolbarComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
-  providers: [],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    CdkTableModule,
+    MatIconModule,
+    MatTableModule,
+    MatToolbarModule,
+  ],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

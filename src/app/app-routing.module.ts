@@ -8,6 +8,7 @@ import { LoginComponent } from './components/login/login.component';
 import { PayComponent } from './components/pay/pay.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
+import { DetailComponent } from './components/workers/detail/detail.component';
 import { WorkersComponent } from './components/workers/workers.component';
 
 const routes: Routes = [
@@ -19,6 +20,10 @@ const routes: Routes = [
   { path: 'mod', component: BoardModeratorComponent },
   { path: 'admin', component: BoardAdminComponent },
   { path: 'admin/workers', component: WorkersComponent },
+  {
+    path: 'admin/workers/detail/:id/:name/:telephone',
+    component: DetailComponent,
+  },
   { path: 'admin/pay', component: PayComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];
