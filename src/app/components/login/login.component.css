@@ -80,3 +80,9 @@ body-loggin {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

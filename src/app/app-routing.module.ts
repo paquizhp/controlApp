@@ -10,22 +10,29 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
 import { DetailComponent } from './components/workers/detail/detail.component';
 import { WorkersComponent } from './components/workers/workers.component';
+import { AuthGuard } from './_helpers/auth.guard';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'user', component: BoardUserComponent },
-  { path: 'mod', component: BoardModeratorComponent },
-  { path: 'admin', component: BoardAdminComponent },
-  { path: 'admin/workers', component: WorkersComponent },
+  { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'user', component: BoardUserComponent, canActivate: [AuthGuard] },
+  { path: 'mod', component: BoardModeratorComponent, canActivate: [AuthGuard] },
+  { path: 'admin', component: BoardAdminComponent, canActivate: [AuthGuard] },
+  {
+    path: 'admin/workers',
+    component: WorkersComponent,
+    canActivate: [AuthGuard],
+  },
   {
     path: 'admin/workers/detail/:id/:name/:telephone',
     component: DetailComponent,
+    canActivate: [AuthGuard],
   },
-  { path: 'admin/pay', component: PayComponent },
+  { path: 'admin/pay', component: PayComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({

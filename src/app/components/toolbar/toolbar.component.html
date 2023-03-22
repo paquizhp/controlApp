@@ -3,34 +3,14 @@
   aria-label="Fourth navbar example"
 >
   <div class="container-fluid">
-    <div class="text-end">
-      <button
-        *ngIf="!isLoggedIn"
-        type="button"
-        routerLink="login"
-        class="btn btn-outline-light me-2"
-      >
-        Login
-      </button>
-      <button *ngIf="isLoggedIn" type="button" class="btn btn-warning">
-        Sign-up
-      </button>
-    </div>
     <a
       *ngIf="isLoggedIn"
-      class="navbar-brand"
+      class="navbar-brand username"
       routerLinkActive="active"
       routerLink="profile"
     >
       {{ username }}
     </a>
-    <a
-      *ngIf="isLoggedIn"
-      class="navbar-brand"
-      routerLinkActive="active"
-      (click)="logout()"
-      >Sing-up</a
-    >
 
     <button
       class="navbar-toggler"
@@ -102,6 +82,15 @@
             <li><a class="dropdown-item" href="#">Another action</a></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
+        </li>
+        <li class="nav-item">
+          <a
+            *ngIf="isLoggedIn"
+            class="nav-link"
+            routerLinkActive="active"
+            (click)="logout()"
+            >Sing-up</a
+          >
         </li>
       </ul>
     </div>
