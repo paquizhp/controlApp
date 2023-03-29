@@ -20,6 +20,8 @@ export class TableComponent implements OnInit {
   @Input() actions: boolean = false;
 
   @Output() ouputData = new EventEmitter<Array<any>>();
+  private lastTouchTime: number = 0;
+  private touchDelay: number = 200;
   constructor() {}
 
   ngOnInit(): void {
@@ -36,11 +38,19 @@ export class TableComponent implements OnInit {
     }
   }
   isSelected(row: any) {
-    console.log(
-      'isSelected',
-      JSON.stringify(this.selectedRow) === JSON.stringify(row)
-    );
     return JSON.stringify(this.selectedRow) === JSON.stringify(row);
+  }
+  onTouchStart() {
+    const currentTime = new Date().getTime();
+    const timeSinceLastTouch = currentTime - this.lastTouchTime;
+
+    if (timeSinceLastTouch < this.touchDelay) {
+      // Double tap detected
+      this.onDblClick(this.selectedRow);
+    } else {
+      // Single tap detected
+      this.lastTouchTime = currentTime;
+    }
   }
   onDblClick(row: any) {
     console.log('table', row);

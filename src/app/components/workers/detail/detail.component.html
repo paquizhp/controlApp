@@ -1,1 +1,55 @@
-<p>detail works!</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-floating mt-3">
+    <input
+      formControlName="employee"
+      type="text"
+      class="form-control"
+      id="floatingName"
+      placeholder="Name"
+      readonly
+    />
+    <label for="floatingName">Name</label>
+  </div>
+  <div class="form-floating mt-3">
+    <select
+      formControlName="job"
+      class="form-select"
+      id="floatingSelect"
+      aria-label="Select job"
+      [ngClass]="{ 'is-invalid': submitted && f['job'].errors }"
+    >
+      <option selected disabled value="">Select job</option>
+      <option *ngFor="let job of jobs" [value]="job.value">
+        {{ job.textField }}
+      </option>
+    </select>
+    <label for="floatingSelect">Job</label>
+  </div>
+
+  <div class="input-group form-floating mt-3">
+    <input
+      formControlName="price"
+      type="number"
+      class="form-control"
+      id="floatingPrice"
+      placeholder="Price"
+      [ngClass]="{ 'is-invalid': submitted && f['price'].errors }"
+    />
+    <label for="floatingPrice">Price</label>
+    <span class="input-group-text">$</span>
+  </div>
+  <div class="form-floating mt-3">
+    <input
+      formControlName="date"
+      type="date"
+      class="form-control"
+      id="floatingDate"
+      placeholder="Date"
+      [ngClass]="{ 'is-invalid': submitted && f['date'].errors }"
+    />
+    <label for="floatingDate">Date</label>
+  </div>
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
+    <button class="btn btn-primary me-md-2" type="submit">Añadir</button>
+  </div>
+</form>

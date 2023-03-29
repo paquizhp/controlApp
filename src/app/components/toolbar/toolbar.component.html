@@ -32,6 +32,7 @@
             aria-current="page"
             routerLinkActive="active"
             routerLink="home"
+            (click)="closeNavbar()"
             >Inicio
           </a>
         </li>
@@ -40,16 +41,25 @@
             class="nav-link"
             routerLinkActive="active"
             routerLink="admin/workers"
+            (click)="closeNavbar()"
             >Trabajadores</a
           >
         </li>
         <li class="nav-item" *ngIf="showAdminBoard && isLoggedIn">
-          <a class="nav-link" routerLinkActive="active" routerLink="admin/pay"
+          <a
+            class="nav-link"
+            routerLinkActive="active"
+            routerLink="admin/pay"
+            (click)="closeNavbar()"
             >Pagar</a
           >
         </li>
         <li class="nav-item" *ngIf="showModeratorBoard">
-          <a class="nav-link" routerLinkActive="active" routerLink="mod"
+          <a
+            class="nav-link"
+            routerLinkActive="active"
+            routerLink="mod"
+            (click)="closeNavbar()"
             >Moderador</a
           >
         </li>
@@ -60,11 +70,16 @@
             *ngIf="isLoggedIn"
             routerLinkActive="active"
             routerLink="user"
+            (click)="closeNavbar()"
             >Usuario</a
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="register"
+          <a
+            class="nav-link"
+            routerLinkActive="active"
+            routerLink="register"
+            (click)="closeNavbar()"
             >Registro</a
           >
         </li>

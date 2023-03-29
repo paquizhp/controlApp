@@ -21,7 +21,6 @@ export class ToolbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
-
     if (this.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
       this.roles = user.roles;
@@ -36,5 +35,9 @@ export class ToolbarComponent implements OnInit {
   logout(): void {
     this.tokenStorageService.signOut();
     this.router.navigateByUrl('/login');
+  }
+  closeNavbar() {
+    const navbar = document.querySelector('.navbar-collapse');
+    navbar?.classList.remove('show');
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { WorkerService } from '../../_services/worker.service';
 import { COLUMNS } from './models/worker.data';
 
@@ -20,7 +20,11 @@ export class WorkersComponent implements OnInit {
   columns = COLUMNS;
 
   tableData: any[] = [];
-  constructor(private workerService: WorkerService, private router: Router) {}
+  constructor(
+    private workerService: WorkerService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.getAllWorkers();
@@ -51,12 +55,19 @@ export class WorkersComponent implements OnInit {
   }
   selectedRow(row: any) {
     console.log('ss', row);
-    const params = { id: row._id, name: row.name, telephone: row.telephone };
+    //const params = { id: row._id, name: row.name, telephone: row.telephone };
     this.router.navigate([
-      '/admin/workers/detail',
+      'admin/workers/detail',
       row._id,
       row.name,
       row.telephone,
     ]);
   }
 }
+/* selectedRow(row: any) {
+    console.log('ss', row);
+    //const params = { id: row._id, name: row.name, telephone: row.telephone };
+    this.router.navigate(['detail', row._id, row.name, row.telephone], {
+      relativeTo: this.route,
+    });
+  } */

@@ -1,3 +1,13 @@
+.profile-img-card {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 10px;
+  display: block;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+
 .bd-placeholder-img {
   font-size: 1.125rem;
   text-anchor: middle;
@@ -85,4 +95,5 @@ body-loggin {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100%;
 }

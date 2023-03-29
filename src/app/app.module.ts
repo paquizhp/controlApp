@@ -3,7 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { CdkTableModule } from '@angular/cdk/table';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -12,17 +13,17 @@ import { AppComponent } from './app.component';
 import { BoardAdminComponent } from './components/board-admin/board-admin.component';
 import { BoardModeratorComponent } from './components/board-moderator/board-moderator.component';
 import { BoardUserComponent } from './components/board-user/board-user.component';
+import { FooterComponent } from './components/generic/footer/footer.component';
 import { TableComponent } from './components/generic/table/table.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { PayComponent } from './components/pay/pay.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { DetailComponent } from './components/workers/detail/detail.component';
 import { WorkersComponent } from './components/workers/workers.component';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
-import { FooterComponent } from './components/generic/footer/footer.component';
-import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,8 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     MatIconModule,
     MatTableModule,
     MatToolbarModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],

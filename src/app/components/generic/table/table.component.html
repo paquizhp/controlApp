@@ -39,6 +39,7 @@
         [class.demo-row-is-clicked]="isSelected(row)"
         (click)="onClick(row)"
         (dblclick)="onDblClick(row)"
+        (touchstart)="onTouchStart()"
       ></tr>
     </tbody>
   </table>

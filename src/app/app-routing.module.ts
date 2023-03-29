@@ -14,7 +14,7 @@ import { AuthGuard } from './_helpers/auth.guard';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent, data: { toolbar: true } },
   { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'user', component: BoardUserComponent, canActivate: [AuthGuard] },
@@ -40,3 +40,18 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
+
+/*
+  {
+    path: 'admin/workers',
+    component: WorkersComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: 'detail/:id/:name/:telephone',
+        component: DetailComponent,
+        //canActivate: [AuthGuard],
+      },
+    ],
+  },
+  */
