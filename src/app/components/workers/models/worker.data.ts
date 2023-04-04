@@ -9,3 +9,5 @@ export const JOBS = [
   { value: 2, textField: 'Saidi' },
   { value: 3, textField: 'Otros' },
 ];
+
+export const WEEKDAYS = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];

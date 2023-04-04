@@ -8,11 +8,14 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { NgChartsModule } from 'ng2-charts';
+import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BoardAdminComponent } from './components/board-admin/board-admin.component';
 import { BoardModeratorComponent } from './components/board-moderator/board-moderator.component';
 import { BoardUserComponent } from './components/board-user/board-user.component';
+import { DashboardComponent } from './components/generic/dashboard/dashboard.component';
 import { FooterComponent } from './components/generic/footer/footer.component';
 import { TableComponent } from './components/generic/table/table.component';
 import { HomeComponent } from './components/home/home.component';
@@ -23,7 +26,6 @@ import { RegisterComponent } from './components/register/register.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { DetailComponent } from './components/workers/detail/detail.component';
 import { WorkersComponent } from './components/workers/workers.component';
-import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,7 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
     DetailComponent,
     FooterComponent,
     ToolbarComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,6 +56,7 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
     MatToolbarModule,
     ReactiveFormsModule,
     MatDatepickerModule,
+    NgChartsModule,
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],
