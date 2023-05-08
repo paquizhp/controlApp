@@ -119,21 +119,17 @@ export class DetailComponent implements OnInit {
       .getCurrentWeek(id, firstDayOfWeek, lastDayOfWeek)
       .subscribe({
         next: ({ data }: any) => {
-          console.log(data);
-          const data1: Pay[] = data?.[0];
+          // const data1: Pay[] = data?.[0];
           if (!this.week.length) {
             this.xAxis();
           }
           this.yAxis(data);
-          console.log('ejeY', this.ejeY);
-          console.log('ejeX', this.ejeX);
           this.totalWeek = 0;
           this.ejeY.forEach((item: { data: number[]; label: string }) => {
             this.totalWeek += item.data.reduce((total: number, num: number) => {
               return total + num;
             });
           });
-          console.log(this.totalWeek);
         },
         error: (e) => {
           console.log('datos de filtro', e);
@@ -141,6 +137,7 @@ export class DetailComponent implements OnInit {
       });
   }
   private yAxis(dataIn: any[]) {
+    let yAux: Array<any> = [];
     dataIn.forEach((value) => {
       if (value.length) {
         console.log('value', value);
@@ -152,13 +149,16 @@ export class DetailComponent implements OnInit {
           });
           return foundValue ? foundValue.price : 0;
         });
+        console.log(value[0].job);
         const dataOut: { data: any; label: any } = {
           data: y,
-          label: value.job == '1' ? 'Roof' : 'Saidy',
+          label: value[0].job === '1' ? 'Roof' : 'Saidy',
         };
-        this.ejeY.push(dataOut);
+        yAux.push(dataOut);
       }
     });
+    this.ejeY = yAux;
+    console.log(this.ejeY);
   }
 
   private xAxis() {

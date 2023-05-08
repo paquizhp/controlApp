@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit {
     return this._ejeX;
   }
   set ejeX(value: Array<any>) {
-    console.log(value);
+    console.log('entradax', value);
     this._ejeX = value;
   }
   @Input()
@@ -24,8 +24,9 @@ export class DashboardComponent implements OnInit {
     return this._data;
   }
   set data(value: Array<any>) {
-    console.log(value);
+    console.log('data', value);
     this._data = value;
+    this.onStart();
   }
 
   barChartOptions: ChartConfiguration['options'] = {
@@ -54,7 +55,7 @@ export class DashboardComponent implements OnInit {
 
   barChartData: ChartData<'bar'> = {
     labels: this._ejeX,
-    datasets: this._data,
+    datasets: this.data,
   };
   constructor() {}
 
@@ -65,7 +66,7 @@ export class DashboardComponent implements OnInit {
   onStart() {
     this.barChartData = {
       labels: this._ejeX,
-      datasets: this._data,
+      datasets: this.data,
     };
   }
 
