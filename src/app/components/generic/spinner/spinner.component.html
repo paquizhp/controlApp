@@ -1,0 +1,14 @@
+<div
+  *ngIf="loading$ | async"
+  class="d-flex justify-content-center align-items-center position-fixed w-100 h-100"
+  style="
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    background-color: rgba(255, 255, 255, 0.5);
+  "
+>
+  <div class="spinner-border text-primary" role="status" style="margin: auto">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>

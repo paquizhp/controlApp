@@ -10,6 +10,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgChartsModule } from 'ng2-charts';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import { spinnerInterceptorProviders } from './_helpers/spinner.interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BoardAdminComponent } from './components/board-admin/board-admin.component';
@@ -17,8 +18,8 @@ import { BoardModeratorComponent } from './components/board-moderator/board-mode
 import { BoardUserComponent } from './components/board-user/board-user.component';
 import { DashboardComponent } from './components/generic/dashboard/dashboard.component';
 import { FooterComponent } from './components/generic/footer/footer.component';
+import { SpinnerComponent } from './components/generic/spinner/spinner.component';
 import { TableComponent } from './components/generic/table/table.component';
-import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { PayComponent } from './components/pay/pay.component';
 import { ProfileComponent } from './components/profile/profile.component';
@@ -33,7 +34,6 @@ import { WorkersComponent } from './components/workers/workers.component';
     LoginComponent,
     RegisterComponent,
     TableComponent,
-    HomeComponent,
     ProfileComponent,
     BoardAdminComponent,
     BoardModeratorComponent,
@@ -44,6 +44,7 @@ import { WorkersComponent } from './components/workers/workers.component';
     FooterComponent,
     ToolbarComponent,
     DashboardComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,7 +59,7 @@ import { WorkersComponent } from './components/workers/workers.component';
     MatDatepickerModule,
     NgChartsModule,
   ],
-  providers: [authInterceptorProviders],
+  providers: [authInterceptorProviders, spinnerInterceptorProviders],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

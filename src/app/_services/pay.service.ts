@@ -14,16 +14,17 @@ export class PayService {
 
   pay(payDetail: any): Observable<any> {
     const dataFilter = {
-      id: payDetail.id,
+      worker: payDetail.id,
       job: payDetail.job,
       date: payDetail.date,
       price: payDetail.price,
     };
+    console.log(dataFilter);
     return this.http.post(API_URL, dataFilter, httpOptions);
   }
   getCurrentWeek(id: String, firstDayOfWeek: String, lastDayOfWeek: String) {
     const dataFilter = {
-      id: id,
+      worker: id,
       firstDay: firstDayOfWeek,
       lastDay: lastDayOfWeek,
     };

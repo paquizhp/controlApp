@@ -1,7 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
 import DataLabelsPlugin from 'chartjs-plugin-datalabels';
-import { BaseChartDirective } from 'ng2-charts';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,24 +8,39 @@ import { BaseChartDirective } from 'ng2-charts';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-  @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
+  // @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
+  private _ejeX: Array<any> = [];
+  private _data: Array<any> = [{ data: [], label: '' }];
+  @Input()
+  get ejeX(): Array<any> {
+    return this._ejeX;
+  }
+  set ejeX(value: Array<any>) {
+    console.log(value);
+    this._ejeX = value;
+  }
+  @Input()
+  get data(): Array<any> {
+    return this._data;
+  }
+  set data(value: Array<any>) {
+    console.log(value);
+    this._data = value;
+  }
 
-  constructor() {}
-
-  ngOnInit(): void {}
-
-  public barChartOptions: ChartConfiguration['options'] = {
+  barChartOptions: ChartConfiguration['options'] = {
     responsive: true,
     // We use these empty structures as placeholders for dynamic theming.
     scales: {
       x: {},
       y: {
         min: 10,
+        max: 400,
       },
     },
     plugins: {
       legend: {
-        display: false,
+        display: true,
       },
       datalabels: {
         anchor: 'end',
@@ -35,32 +49,32 @@ export class DashboardComponent implements OnInit {
     },
   };
 
-  public barChartType: ChartType = 'bar';
-  public barChartPlugins = [DataLabelsPlugin];
+  barChartType: ChartType = 'bar';
+  barChartPlugins = [DataLabelsPlugin];
 
-  public barChartData: ChartData<'bar'> = {
-    labels: ['2006', '2007', '2008', '2009', '2010', '2011', '2012'],
-    datasets: [{ data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' }],
+  barChartData: ChartData<'bar'> = {
+    labels: this._ejeX,
+    datasets: this._data,
   };
+  constructor() {}
+
+  ngOnInit(): void {
+    this.onStart();
+  }
+  //https://valor-software.com/ng2-charts/#BarChart
+  onStart() {
+    this.barChartData = {
+      labels: this._ejeX,
+      datasets: this._data,
+    };
+  }
 
   // events
-  public chartClicked({
-    event,
-    active,
-  }: {
-    event?: ChartEvent;
-    active?: {}[];
-  }): void {
+  chartClicked({ event, active }: { event?: ChartEvent; active?: {}[] }): void {
     console.log(event, active);
   }
 
-  public chartHovered({
-    event,
-    active,
-  }: {
-    event?: ChartEvent;
-    active?: {}[];
-  }): void {
+  chartHovered({ event, active }: { event?: ChartEvent; active?: {}[] }): void {
     console.log(event, active);
   }
   /*

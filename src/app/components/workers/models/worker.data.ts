@@ -11,3 +11,11 @@ export const JOBS = [
 ];
 
 export const WEEKDAYS = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
+
+export interface Pay {
+  _id: String;
+  date: string;
+  job: String;
+  price: Number;
+  worker: String;
+}

@@ -87,9 +87,21 @@
     <div>&nbsp;{{ errorMessage }}</div>
   </div>
   <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
-    <button class="btn btn-primary me-md-2" type="submit">Pagar</button>
+    <button class="btn btn-primary me-md-2" type="submit">Añadir</button>
   </div>
 </form>
-<div class="col-12 mt-5">
-  <app-dashboard></app-dashboard>
+<div *ngIf="ejeX.length > 0 && ejeY.length > 0" class="mt-5">
+  <app-dashboard [ejeX]="ejeX" [data]="ejeY"></app-dashboard>
+</div>
+
+<div class="row align-items-center g-4 mt-3">
+  <div class="col-12 col-md-auto">
+    <div class="d-flex align-items-center">
+      <img src="assets/images/pago.png" alt="" height="46" width="46" />
+      <div class="ms-3">
+        <h4 class="mb-0">Total {{ totalWeek }} $</h4>
+        <p class="text-800 fs--1 mb-0">Out of stock</p>
+      </div>
+    </div>
+  </div>
 </div>
